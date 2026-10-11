@@ -4,7 +4,7 @@ An educational stock market simulator built with **JavaFX + MySQL + JDBC**.
 Practise investing in 10 real NSE stocks using **virtual money only** — no real
 funds are involved at any point.
 
-Built by Deepakshi Rajkulshrestha as a Java mini-project.
+
 
 ---
 
