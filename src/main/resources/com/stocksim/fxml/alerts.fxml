@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.stocksim.controller.AlertsController"
+            styleClass="root" prefWidth="1440" prefHeight="900">
+
+    <left>
+        <VBox fx:id="sidebar" styleClass="sidebar" prefWidth="250"/>
+    </left>
+
+    <center>
+        <VBox spacing="14">
+            <padding><Insets top="18" right="24" bottom="18" left="24"/></padding>
+
+            <HBox alignment="CENTER_LEFT" spacing="14">
+                <VBox spacing="2">
+                    <Label text="Price Alerts" styleClass="screen-title"/>
+                    <Label fx:id="simDayLabel" styleClass="subtext"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="sessionUserLabel" styleClass="subtext"/>
+            </HBox>
+
+            <VBox spacing="10" styleClass="card">
+                <Label text="Set a new alert" styleClass="section-title"/>
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <Label text="Stock"/>
+                    <ComboBox fx:id="stockCombo" prefWidth="360"/>
+                    <Label fx:id="currentPriceLabel" styleClass="card-value"/>
+                </HBox>
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <Label text="Alert me when the price goes"/>
+                    <RadioButton fx:id="aboveRadio" text="ABOVE" selected="true">
+                        <toggleGroup><ToggleGroup fx:id="conditionGroup"/></toggleGroup>
+                    </RadioButton>
+                    <RadioButton fx:id="belowRadio" text="BELOW" toggleGroup="$conditionGroup"/>
+                    <Label text="Target price"/>
+                    <TextField fx:id="targetPriceField" promptText="e.g. 3500" prefWidth="200"/>
+                    <Button text="SET ALERT" onAction="#handleSetAlert" styleClass="primary-button"/>
+                </HBox>
+                <Label fx:id="formErrorLabel" styleClass="error-label" visible="false" managed="false"/>
+            </VBox>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Your alerts" styleClass="section-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="alertCountLabel" styleClass="subtext"/>
+                <Button text="CHECK NOW" onAction="#handleCheckNow" styleClass="button"/>
+                <Button text="DELETE SELECTED" onAction="#handleDelete" styleClass="sell-button"/>
+            </HBox>
+
+            <TableView fx:id="alertsTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="stockColumn"     text="Stock"         prefWidth="260"/>
+                    <TableColumn fx:id="conditionColumn" text="Condition"     prefWidth="150"/>
+                    <TableColumn fx:id="targetColumn"    text="Target Price"  prefWidth="170"/>
+                    <TableColumn fx:id="currentColumn"   text="Current Price" prefWidth="170"/>
+                    <TableColumn fx:id="statusColumn"    text="Status"        prefWidth="150"/>
+                </columns>
+            </TableView>
+
+            <HBox spacing="10" alignment="CENTER_LEFT" styleClass="card">
+                <Label text="Alerts are checked automatically every time you advance time:"/>
+                <Button text="NEXT DAY" onAction="#handleNextDay" styleClass="primary-button"/>
+                <Button text="NEXT WEEK" onAction="#handleNextWeek" styleClass="button"/>
+                <Button text="NEXT MONTH" onAction="#handleNextMonth" styleClass="button"/>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.stocksim.controller.RegisterController"
+           styleClass="root" prefWidth="1440" prefHeight="900">
+
+    <VBox alignment="CENTER" spacing="10" styleClass="auth-card" maxWidth="540" maxHeight="800">
+        <Label text="Create Account" styleClass="title-label"/>
+        <Label text="Start with 1,00,000 rupees of virtual capital" styleClass="subtext"/>
+
+        <VBox spacing="3">
+            <Label text="Full Name" styleClass="subtext"/>
+            <TextField fx:id="nameField" promptText="Deepakshi Rajkulshrestha" prefWidth="440"/>
+            <Label fx:id="nameError" styleClass="error-label" visible="false" managed="false"/>
+        </VBox>
+
+        <VBox spacing="3">
+            <Label text="Username" styleClass="subtext"/>
+            <TextField fx:id="usernameField" promptText="3-50 letters, digits or _" prefWidth="440"/>
+            <Label fx:id="usernameError" styleClass="error-label" wrapText="true"
+                   maxWidth="440" visible="false" managed="false"/>
+        </VBox>
+
+        <VBox spacing="3">
+            <Label text="Email" styleClass="subtext"/>
+            <TextField fx:id="emailField" promptText="you@example.com" prefWidth="440"/>
+            <Label fx:id="emailError" styleClass="error-label" wrapText="true"
+                   maxWidth="440" visible="false" managed="false"/>
+        </VBox>
+
+        <VBox spacing="3">
+            <Label text="Password" styleClass="subtext"/>
+            <PasswordField fx:id="passwordField" promptText="At least 8 characters" prefWidth="440"/>
+            <Label fx:id="passwordError" styleClass="error-label" wrapText="true"
+                   maxWidth="440" visible="false" managed="false"/>
+        </VBox>
+
+        <VBox spacing="3">
+            <Label text="Confirm Password" styleClass="subtext"/>
+            <PasswordField fx:id="confirmPasswordField" promptText="Repeat your password"
+                           prefWidth="440"/>
+            <Label fx:id="confirmError" styleClass="error-label" wrapText="true"
+                   maxWidth="440" visible="false" managed="false"/>
+        </VBox>
+
+        <Button fx:id="registerButton" text="REGISTER" onAction="#handleRegister"
+                styleClass="primary-button" prefWidth="440" defaultButton="true"/>
+
+        <HBox alignment="CENTER" spacing="4">
+            <Label text="Already have an account?" styleClass="subtext"/>
+            <Button text="Login" onAction="#handleGoToLogin" styleClass="link-button"/>
+        </HBox>
+    </VBox>
+</StackPane>

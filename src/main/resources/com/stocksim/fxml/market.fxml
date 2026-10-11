@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.stocksim.controller.MarketController"
+            styleClass="root" prefWidth="1440" prefHeight="900">
+
+    <left>
+        <VBox fx:id="sidebar" styleClass="sidebar" prefWidth="250"/>
+    </left>
+
+    <center>
+        <VBox spacing="14">
+            <padding><Insets top="18" right="24" bottom="18" left="24"/></padding>
+
+            <HBox alignment="CENTER_LEFT" spacing="14">
+                <VBox spacing="2">
+                    <Label text="Market" styleClass="screen-title"/>
+                    <Label fx:id="simDayLabel" text="Simulation Day: 1" styleClass="subtext"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="sessionUserLabel" styleClass="subtext"/>
+            </HBox>
+
+            <HBox spacing="10" alignment="CENTER_LEFT" styleClass="card">
+                <Label text="Search"/>
+                <TextField fx:id="searchField" promptText="Company name or symbol" prefWidth="320"/>
+                <Label text="Sector"/>
+                <ComboBox fx:id="sectorCombo" prefWidth="200"/>
+                <Label text="Sort by"/>
+                <ComboBox fx:id="sortCombo" prefWidth="230"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="resultCountLabel" styleClass="subtext"/>
+                <Button text="Reset" onAction="#handleReset" styleClass="button"/>
+            </HBox>
+
+            <TableView fx:id="marketTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="companyColumn" text="Company"   prefWidth="260"/>
+                    <TableColumn fx:id="symbolColumn"  text="Symbol"    prefWidth="120"/>
+                    <TableColumn fx:id="sectorColumn"  text="Sector"    prefWidth="130"/>
+                    <TableColumn fx:id="priceColumn"   text="Price"     prefWidth="150"/>
+                    <TableColumn fx:id="changeColumn"  text="Change %"  prefWidth="130"/>
+                    <TableColumn fx:id="ownedColumn"   text="You Own"   prefWidth="110"/>
+                </columns>
+            </TableView>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Double-click a row (or select it and press Open) to trade."
+                       styleClass="subtext"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="OPEN STOCK" onAction="#handleOpenSelected" styleClass="primary-button"/>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

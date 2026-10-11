@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.stocksim.controller.AnalysisController"
+            styleClass="root" prefWidth="1440" prefHeight="900">
+
+    <left>
+        <VBox fx:id="sidebar" styleClass="sidebar" prefWidth="250"/>
+    </left>
+
+    <center>
+        <VBox spacing="12">
+            <padding><Insets top="18" right="24" bottom="18" left="24"/></padding>
+
+            <HBox alignment="CENTER_LEFT" spacing="14">
+                <VBox spacing="2">
+                    <Label text="Analysis" styleClass="screen-title"/>
+                    <Label fx:id="simDayLabel" styleClass="subtext"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="sessionUserLabel" styleClass="subtext"/>
+            </HBox>
+
+            <TabPane fx:id="analysisTabs" VBox.vgrow="ALWAYS" tabClosingPolicy="UNAVAILABLE">
+
+                <Tab text="Stock Analysis">
+                    <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+                        <VBox spacing="12">
+                            <padding><Insets top="14" right="8" bottom="14" left="8"/></padding>
+
+                            <HBox spacing="10" alignment="CENTER_LEFT" styleClass="card">
+                                <Label text="Select stock" styleClass="section-title"/>
+                                <ComboBox fx:id="stockCombo" prefWidth="370"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Label fx:id="stockPriceLabel" styleClass="card-value"/>
+                            </HBox>
+
+                            <GridPane hgap="12" vgap="12">
+                                <columnConstraints>
+                                    <ColumnConstraints percentWidth="25"/>
+                                    <ColumnConstraints percentWidth="25"/>
+                                    <ColumnConstraints percentWidth="25"/>
+                                    <ColumnConstraints percentWidth="25"/>
+                                </columnConstraints>
+
+                                <VBox styleClass="card" spacing="3" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                    <Label text="DAILY CHANGE" styleClass="card-title"/>
+                                    <Label fx:id="dailyChangeLabel" text="-" styleClass="card-value"/>
+                                </VBox>
+                                <VBox styleClass="card" spacing="3" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                    <Label text="7-DAY CHANGE" styleClass="card-title"/>
+                                    <Label fx:id="sevenDayLabel" text="-" styleClass="card-value"/>
+                                </VBox>
+                                <VBox styleClass="card" spacing="3" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                                    <Label text="30-DAY CHANGE" styleClass="card-title"/>
+                                    <Label fx:id="thirtyDayLabel" text="-" styleClass="card-value"/>
+                                </VBox>
+                                <VBox styleClass="card" spacing="3" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                                    <Label text="VOLATILITY" styleClass="card-title"/>
+                                    <Label fx:id="volatilityLabel" text="-" styleClass="card-value"/>
+                                </VBox>
+
+                                <VBox styleClass="card" spacing="3" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                    <Label text="MOVING AVG (5D)" styleClass="card-title"/>
+                                    <Label fx:id="ma5Label" text="-" styleClass="card-value"/>
+                                </VBox>
+                                <VBox styleClass="card" spacing="3" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <Label text="MOVING AVG (20D)" styleClass="card-title"/>
+                                    <Label fx:id="ma20Label" text="-" styleClass="card-value"/>
+                                </VBox>
+                                <VBox styleClass="card" spacing="3" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                    <Label text="52-WEEK HIGH" styleClass="card-title"/>
+                                    <Label fx:id="highLabel" text="-" styleClass="card-value"/>
+                                </VBox>
+                                <VBox styleClass="card" spacing="3" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                    <Label text="52-WEEK LOW" styleClass="card-title"/>
+                                    <Label fx:id="lowLabel" text="-" styleClass="card-value"/>
+                                </VBox>
+
+                                <VBox styleClass="card" spacing="3" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                    <Label text="TREND" styleClass="card-title"/>
+                                    <Label fx:id="trendLabel" text="-" styleClass="card-value"/>
+                                </VBox>
+                                <VBox styleClass="card" spacing="3" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                    <Label text="MOMENTUM" styleClass="card-title"/>
+                                    <Label fx:id="momentumLabel" text="-" styleClass="card-value"/>
+                                </VBox>
+                                <VBox styleClass="card" spacing="3" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                    <Label text="RISK PROFILE" styleClass="card-title"/>
+                                    <Label fx:id="riskLabel" text="-" styleClass="card-value"/>
+                                </VBox>
+                                <VBox styleClass="card" spacing="3" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                    <Label text="SECTOR" styleClass="card-title"/>
+                                    <Label fx:id="sectorLabel" text="-" styleClass="card-value"/>
+                                </VBox>
+                            </GridPane>
+
+                            <Label text="Change comparison" styleClass="section-title"/>
+                            <BarChart fx:id="changeChart" prefHeight="330" legendVisible="false"
+                                      animated="false">
+                                <xAxis><CategoryAxis fx:id="changeXAxis" label="Period"/></xAxis>
+                                <yAxis><NumberAxis fx:id="changeYAxis" label="Change %"/></yAxis>
+                            </BarChart>
+                        </VBox>
+                    </ScrollPane>
+                </Tab>
+
+                <Tab text="Risk and Diversification">
+                    <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+                        <VBox spacing="12">
+                            <padding><Insets top="14" right="8" bottom="14" left="8"/></padding>
+
+                            <VBox fx:id="warningBox" styleClass="warning-box" spacing="4"
+                                  visible="false" managed="false"/>
+
+                            <GridPane hgap="12" vgap="12">
+                                <columnConstraints>
+                                    <ColumnConstraints percentWidth="33.33"/>
+                                    <ColumnConstraints percentWidth="33.33"/>
+                                    <ColumnConstraints percentWidth="33.33"/>
+                                </columnConstraints>
+                                <VBox styleClass="card" spacing="3" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                    <Label text="LARGEST HOLDING" styleClass="card-title"/>
+                                    <Label fx:id="largestHoldingLabel" text="-" styleClass="card-value"/>
+                                </VBox>
+                                <VBox styleClass="card" spacing="3" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                    <Label text="LARGEST SECTOR" styleClass="card-title"/>
+                                    <Label fx:id="largestSectorLabel" text="-" styleClass="card-value"/>
+                                </VBox>
+                                <VBox styleClass="card" spacing="3" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                                    <Label text="DIVERSIFICATION" styleClass="card-title"/>
+                                    <Label fx:id="diversificationLabel" text="-" styleClass="card-value"/>
+                                </VBox>
+                            </GridPane>
+
+                            <HBox spacing="12">
+                                <VBox spacing="6" HBox.hgrow="ALWAYS" prefWidth="560">
+                                    <Label text="Sector allocation" styleClass="section-title"/>
+                                    <PieChart fx:id="sectorPieChart" prefHeight="340"
+                                              labelsVisible="true"/>
+                                </VBox>
+                                <VBox spacing="6" HBox.hgrow="ALWAYS" prefWidth="560">
+                                    <Label text="Stock allocation" styleClass="section-title"/>
+                                    <BarChart fx:id="stockBarChart" prefHeight="340"
+                                              legendVisible="false" animated="false">
+                                        <xAxis><CategoryAxis fx:id="stockXAxis" label="Stock"/></xAxis>
+                                        <yAxis><NumberAxis fx:id="stockYAxis" label="Share of portfolio (percent)"/></yAxis>
+                                    </BarChart>
+                                </VBox>
+                            </HBox>
+                        </VBox>
+                    </ScrollPane>
+                </Tab>
+            </TabPane>
+        </VBox>
+    </center>
+</BorderPane>

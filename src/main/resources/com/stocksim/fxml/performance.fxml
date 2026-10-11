@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.stocksim.controller.PerformanceController"
+            styleClass="root" prefWidth="1440" prefHeight="900">
+
+    <left>
+        <VBox fx:id="sidebar" styleClass="sidebar" prefWidth="250"/>
+    </left>
+
+    <center>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+            <VBox spacing="14">
+                <padding><Insets top="18" right="24" bottom="18" left="24"/></padding>
+
+                <HBox alignment="CENTER_LEFT" spacing="14">
+                    <VBox spacing="2">
+                        <Label text="Performance" styleClass="screen-title"/>
+                        <Label fx:id="simDayLabel" styleClass="subtext"/>
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="sessionUserLabel" styleClass="subtext"/>
+                </HBox>
+
+                <GridPane hgap="14" vgap="14">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="25"/>
+                        <ColumnConstraints percentWidth="25"/>
+                        <ColumnConstraints percentWidth="25"/>
+                        <ColumnConstraints percentWidth="25"/>
+                    </columnConstraints>
+
+                    <VBox styleClass="card" spacing="3" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <Label text="INITIAL CAPITAL" styleClass="card-title"/>
+                        <Label fx:id="initialCapitalLabel" text="-" styleClass="card-value"/>
+                    </VBox>
+                    <VBox styleClass="card" spacing="3" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <Label text="CURRENT VALUE" styleClass="card-title"/>
+                        <Label fx:id="currentValueLabel" text="-" styleClass="card-value"/>
+                    </VBox>
+                    <VBox styleClass="card" spacing="3" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                        <Label text="TOTAL RETURN" styleClass="card-title"/>
+                        <Label fx:id="totalReturnLabel" text="-" styleClass="card-value"/>
+                    </VBox>
+                    <VBox styleClass="card" spacing="3" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                        <Label text="NET GAIN / LOSS" styleClass="card-title"/>
+                        <Label fx:id="netGainLabel" text="-" styleClass="card-value"/>
+                    </VBox>
+
+                    <VBox styleClass="card" spacing="3" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <Label text="BEST PERFORMER" styleClass="card-title"/>
+                        <Label fx:id="bestLabel" text="-" styleClass="card-value"/>
+                    </VBox>
+                    <VBox styleClass="card" spacing="3" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label text="WORST PERFORMER" styleClass="card-title"/>
+                        <Label fx:id="worstLabel" text="-" styleClass="card-value"/>
+                    </VBox>
+                    <VBox styleClass="card" spacing="3" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <Label text="TOTAL TRADES" styleClass="card-title"/>
+                        <Label fx:id="totalTradesLabel" text="-" styleClass="card-value"/>
+                        <Label fx:id="buySellLabel" text="-" styleClass="subtext"/>
+                    </VBox>
+                    <VBox styleClass="card" spacing="3" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <Label text="SELL OUTCOMES" styleClass="card-title"/>
+                        <Label fx:id="profitableLabel" text="-" styleClass="card-value"/>
+                        <Label fx:id="lossMakingLabel" text="-" styleClass="subtext"/>
+                    </VBox>
+                </GridPane>
+
+                <Label text="Portfolio value over the simulation" styleClass="section-title"/>
+                <LineChart fx:id="valueChart" prefHeight="340" legendVisible="false"
+                           createSymbols="false" animated="false">
+                    <xAxis><NumberAxis fx:id="valueXAxis" label="Simulation Day"
+                                       forceZeroInRange="false"/></xAxis>
+                    <yAxis><NumberAxis fx:id="valueYAxis" label="Value (INR)"
+                                       forceZeroInRange="false"/></yAxis>
+                </LineChart>
+                <Label fx:id="valueChartNote" styleClass="subtext" wrapText="true"/>
+
+                <HBox spacing="14">
+                    <VBox spacing="6" HBox.hgrow="ALWAYS" prefWidth="560">
+                        <Label text="Sector distribution" styleClass="section-title"/>
+                        <PieChart fx:id="sectorPieChart" prefHeight="340"/>
+                    </VBox>
+                    <VBox spacing="6" HBox.hgrow="ALWAYS" prefWidth="560">
+                        <Label text="Profit / loss by stock" styleClass="section-title"/>
+                        <BarChart fx:id="plChart" prefHeight="340" legendVisible="false"
+                                  animated="false">
+                            <xAxis><CategoryAxis fx:id="plXAxis" label="Stock"/></xAxis>
+                            <yAxis><NumberAxis fx:id="plYAxis" label="P/L (INR)"/></yAxis>
+                        </BarChart>
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="10" alignment="CENTER_LEFT" styleClass="card">
+                    <Label text="Advance simulated time:"/>
+                    <Button text="NEXT DAY" onAction="#handleNextDay" styleClass="primary-button"/>
+                    <Button text="NEXT WEEK" onAction="#handleNextWeek" styleClass="button"/>
+                    <Button text="NEXT MONTH" onAction="#handleNextMonth" styleClass="button"/>
+                </HBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

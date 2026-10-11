@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.stocksim.controller.GoalsController"
+            styleClass="root" prefWidth="1440" prefHeight="900">
+
+    <left>
+        <VBox fx:id="sidebar" styleClass="sidebar" prefWidth="250"/>
+    </left>
+
+    <center>
+        <VBox spacing="14">
+            <padding><Insets top="18" right="24" bottom="18" left="24"/></padding>
+
+            <HBox alignment="CENTER_LEFT" spacing="14">
+                <VBox spacing="2">
+                    <Label text="Investment Goals" styleClass="screen-title"/>
+                    <Label fx:id="simDayLabel" styleClass="subtext"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="sessionUserLabel" styleClass="subtext"/>
+            </HBox>
+
+            <HBox spacing="14" alignment="CENTER_LEFT" styleClass="card">
+                <VBox spacing="3">
+                    <Label text="CURRENT PORTFOLIO VALUE" styleClass="card-title"/>
+                    <Label fx:id="portfolioValueLabel" text="-" styleClass="card-value"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="goalCountLabel" styleClass="subtext"/>
+                <Button text="+ ADD GOAL" onAction="#handleAddGoal" styleClass="primary-button"/>
+            </HBox>
+
+            <Label text="Your goals" styleClass="section-title"/>
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+                <VBox fx:id="goalsBox" spacing="10">
+                    <padding><Insets top="4" right="6" bottom="4" left="2"/></padding>
+                </VBox>
+            </ScrollPane>
+
+            <HBox spacing="10" alignment="CENTER_LEFT" styleClass="card">
+                <Label text="Advance simulated time:"/>
+                <Button text="NEXT DAY" onAction="#handleNextDay" styleClass="primary-button"/>
+                <Button text="NEXT WEEK" onAction="#handleNextWeek" styleClass="button"/>
+                <Button text="NEXT MONTH" onAction="#handleNextMonth" styleClass="button"/>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

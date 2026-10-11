@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.stocksim.controller.WelcomeController"
+           styleClass="root" prefWidth="1440" prefHeight="900">
+
+    <VBox alignment="CENTER" spacing="18" maxWidth="640">
+        <Label text="StockSim" styleClass="logo-label"/>
+        <Label text="Learn. Simulate. Invest Virtually." styleClass="tagline-label"/>
+
+        <VBox alignment="CENTER" spacing="6" styleClass="card" maxWidth="580">
+            <Label text="Practice investing in 10 real NSE stocks" styleClass="card-value"/>
+            <Label text="using 100% virtual money - no real funds involved."
+                   styleClass="subtext" wrapText="true"/>
+            <Label text="Every new account starts with a virtual capital of 1,00,000 rupees."
+                   styleClass="subtext" wrapText="true"/>
+        </VBox>
+
+        <HBox alignment="CENTER" spacing="16">
+            <Button fx:id="loginButton" text="LOGIN" onAction="#handleLogin"
+                    styleClass="primary-button" prefWidth="200"/>
+            <Button fx:id="registerButton" text="REGISTER" onAction="#handleRegister"
+                    styleClass="button" prefWidth="200"/>
+        </HBox>
+
+        <Label text="Educational project - not a real trading application."
+               styleClass="subtext"/>
+    </VBox>
+</StackPane>
